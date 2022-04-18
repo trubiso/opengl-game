@@ -3,6 +3,9 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 #include "Shader.h"
 #include <math.h>
@@ -127,6 +130,8 @@ int main() {
     shader3.set("texture1", 0);
     shader3.set("texture2", 1);
 
+    glm::mat4 trans = glm::mat4(1.0f);
+
     // fps
     int frameCount = 0;
     float lastFrame = 0.0f;
@@ -156,8 +161,10 @@ int main() {
 
         // rendering - wall
         float timeValue = glfwGetTime();
+        trans = glm::rotate(trans, glm::radians(sin(timeValue) + 1.0f), glm::vec3(0.0, 0.0, 1.0));
         shader3.use();
         shader3.set("time", timeValue);
+        glUniformMatrix4fv(shader3.uniform("transform"), 1, GL_FALSE, glm::value_ptr(trans));
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture1);
         glActiveTexture(GL_TEXTURE1);

@@ -18,6 +18,8 @@ public:
     // use/activate the shader
     void use();
 
+    unsigned int uniform(const std::string &name) const;
+
     void set    (const std::string &name, float val)                          const;
     void set    (const std::string &name, int   val)                          const;
     void set    (const std::string &name, bool  val)                          const;

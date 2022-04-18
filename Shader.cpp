@@ -101,42 +101,46 @@ void Shader::use() {
     glUseProgram(ID);
 }
 
+unsigned int Shader::uniform(const std::string &name) const {
+    return glGetUniformLocation(ID, name.c_str());
+}
+
 void Shader::set(const std::string &name, float val) const {
-    glUniform1f(glGetUniformLocation(ID, name.c_str()), val);
+    glUniform1f(uniform(name), val);
 }
 void Shader::set(const std::string &name, int val) const {
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), val);
+    glUniform1i(uniform(name), val);
 }
 void Shader::set(const std::string &name, bool val) const {
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), (int) val);
+    glUniform1i(uniform(name), (int) val);
 }
 
 void Shader::setVec2(const std::string &name, float x, float y) const {
-    glUniform2f(glGetUniformLocation(ID, name.c_str()), x, y);
+    glUniform2f(uniform(name), x, y);
 }
 void Shader::setVec2(const std::string &name, int x, int y) const {
-    glUniform2i(glGetUniformLocation(ID, name.c_str()), x, y);
+    glUniform2i(uniform(name), x, y);
 }
 void Shader::setVec2(const std::string &name, bool x, bool y) const {
-    glUniform2i(glGetUniformLocation(ID, name.c_str()), (int) x, (int) y);
+    glUniform2i(uniform(name), (int) x, (int) y);
 }
 
 void Shader::setVec3(const std::string &name, float x, float y, float z) const {
-    glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z);
+    glUniform3f(uniform(name), x, y, z);
 }
 void Shader::setVec3(const std::string &name, int x, int y, int z) const {
-    glUniform3i(glGetUniformLocation(ID, name.c_str()), x, y, z);
+    glUniform3i(uniform(name), x, y, z);
 }
 void Shader::setVec3(const std::string &name, bool x, bool y, bool z) const {
-    glUniform3i(glGetUniformLocation(ID, name.c_str()), (int) x, (int) y, (int) z);
+    glUniform3i(uniform(name), (int) x, (int) y, (int) z);
 }
 
 void Shader::setVec4(const std::string &name, float x, float y, float z, float w) const {
-    glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, w);
+    glUniform4f(uniform(name), x, y, z, w);
 }
 void Shader::setVec4(const std::string &name, int x, int y, int z, int w) const {
-    glUniform4i(glGetUniformLocation(ID, name.c_str()), x, y, z, w);
+    glUniform4i(uniform(name), x, y, z, w);
 }
 void Shader::setVec4(const std::string &name, bool x, bool y, bool z, bool w) const {
-    glUniform4i(glGetUniformLocation(ID, name.c_str()), (int) x, (int) y, (int) z, (int) w);
+    glUniform4i(uniform(name), (int) x, (int) y, (int) z, (int) w);
 }
